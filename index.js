@@ -1,7 +1,7 @@
 var click = new Audio("click.mp3");
 var over = new Audio("gameover.mp3");
-// bgm.play();
 
+// NOTE: sound button
 document.querySelector("span#off").addEventListener("click",function(){
   makesound("off");
 });
@@ -30,13 +30,15 @@ function makesound(status){
     audio.pause();
   }
 }
+// NOTE: sound function ends here
 
+var j = "X";//variable to input
 
-var j = "X";
-
+// NOTE: Loop to input "X" or "O" where clicked
 for (var i = 0; i < 9; i++){
   document.querySelectorAll(".box")[i].addEventListener("click",function(){
     var boxtext=this.innerText;
+
     if((boxtext==="")){
       click.play();
       this.innerText= j;
@@ -53,36 +55,24 @@ for (var i = 0; i < 9; i++){
     var b8 = document.querySelector(".gameContainer :nth-child(8)").innerText;
     var b9 = document.querySelector(".gameContainer :nth-child(9)").innerText;
 
-    console.log(b1);
-    console.log(b2);
-    console.log(b3);
-    console.log(b4);
-    console.log(b5);
-    console.log(b6);
-    console.log(b7);
-    console.log(b8);
-    console.log(b9);
-
 
     if((((b1===b2)&&(b2===b3))&&(b1!==""))||(((b4===b5)&&(b5===b6))&&(b5!==""))||(((b7===b8)&&(b8===b9))&&(b8!==""))||(((b1===b4)&&(b4===b7))&&(b4!==""))||(((b2===b5)&&(b5===b8))&&(b5!==""))||(((b3===b6)&&(b6===b9))&&(b6!==""))||(((b1===b5)&&(b5===b9))&&(b5!==""))||(((b7===b5)&&(b5===b3))&&(b5!==""))) {
       var final = document.querySelector(".gameInfo");
       final.classList.add("show");
-      console.log(j+" won 🥳");
-      console.log(final);
-
       document.querySelector(".winning-message").innerHTML=j + " Won!";
       over.play();
-
+      audio.pause();
     }
+
     else if((b1!=="")&&(b2!=="")&&(b3!=="")&&(b4!=="")&&(b5!=="")&&(b6!=="")&&(b7!=="")&&(b8!=="")&&(b9!=="")) {
       var final = document.querySelector(".gameInfo");
       final.classList.add("show");
-      console.log("tie");
-      console.log(final);
-
       document.querySelector(".winning-message").innerHTML= "This was a tie";
+      audio.pause();
       over.play();
     }
+
+    //changing sign of J so that next input is different
     if(j==="X") j="O";
     else j="X";
 
